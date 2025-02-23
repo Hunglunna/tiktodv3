@@ -95,8 +95,15 @@ class Bot:
 
                     if captcha_img_tag:
                         log_message(self.app, "Captcha image found")
-                        # Take a screenshot of the captcha image element
+                        
                         captcha_img_tag.screenshot('captcha.png')
+                        img = Image.open("captcha.png")
+
+
+                        cropped_img = img.crop((0, 51, 287, 139))  
+
+
+                        cropped_img.save("captcha.png")
                         log_message(self.app, "Captcha saved as captcha.png")
                         image = Image.open('captcha.png')
                         captcha_text = self.read_captcha(image)
